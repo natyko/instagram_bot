@@ -1,3 +1,4 @@
+'''load libraries'''
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from time import sleep, strftime
@@ -6,11 +7,13 @@ import pandas as pd
 from dotenv import load_dotenv
 import os
 
-chromedriver_path = '/Users/nataliakozitcyna/Downloads/coding/chromedriver' # Change this to your own chromedriver path!
+'''assign chrome driver path'''
+chromedriver_path = '/Users/nataliakozitcyna/Downloads/coding/drivers/chromedriver'  # Change this to your own chromedriver path!
 webdriver = webdriver.Chrome(executable_path=chromedriver_path)
-sleep(2)
+sleep(2)  # make sleep time for program to act like a "human"
 
-webdriver.get('https://www.instagram.com/accounts/login/?source=auth_switcher') #instagram
+'''Go to login page'''
+webdriver.get('https://www.instagram.com/accounts/login/?source=auth_switcher')
 sleep(3)
 
 load_dotenv()
@@ -20,7 +23,6 @@ user = os.getenv("user", default="OOPS")
 
 
 username = webdriver.find_element_by_name('username')
-# username.send_keys('photo_by_tasha')  # your user_name
 username.send_keys(user)  # your user_name
 password = webdriver.find_element_by_name('password')
 password.send_keys(password_ok)  # your password
@@ -34,7 +36,6 @@ login_not_now = webdriver.find_element_by_css_selector('section > main > div > d
 login_not_now.click()
 sleep(4)
 
-# notnow = webdriver.find_element_by_css_selector('body > div.RnEpo.Yx5HN > div > div > div.mt3GC > button.aOOlW.HoLwm') # first working model
 notnow = webdriver.find_element_by_css_selector('body > div.RnEpo.Yx5HN > div > div > div > div.mt3GC > button.aOOlW.HoLwm')
 notnow.click() #comment these last 2 lines out, if you don't get a pop up asking about notifications
 
@@ -61,8 +62,6 @@ for hashtag in hashtag_list:
     try:
         for x in range(1,200):
             username = webdriver.find_element_by_xpath('/html/body/div[4]/div[2]/div/article/header/div[2]/div[1]/div[2]/button').text
-            # /html/body/div[4]/div[2]/div/article/header/div[2]/div[1]/div[2]/button
-            # /html/body/div[4]/div[2]/div/article/header/div[2]/div[1]/div[1]/a #1
 
             if username not in prev_user_list:
                 # If we already follow, do not unfollow
@@ -85,15 +84,8 @@ for hashtag in hashtag_list:
                     # if comm_prob > 7:
                     comments += 1
 
-                    # webdriver.find_element_by_xpath('//*[@id="react-root"]/section/main/div/div[1]/article/div[3]/section[1]/span[2]/button').click()
-                    # //*[@id="react-root"]/section/main/div/div[1]/article/div[3]/section[1]/span[2]/button/div/svg
-                    # #react-root > section > main > div > div.ltEKP > article > div.eo2As > section.ltpMr.Slqrh > span._15y0l > button > div > svg
-                    # document.querySelector("#react-root > section > main > div > div.ltEKP > article > div.eo2As > section.ltpMr.Slqrh > span._15y0l > button > div > svg")
+                    webdriver.find_element_by_xpath('//*[@id="react-root"]/section/main/div/div[1]/article/div[3]/section[1]/span[2]/button').click()
                     comment_box = webdriver.find_element_by_xpath('//*[@id="react-root"]/section/main/div/div[1]/article/div[3]/section[3]/div[1]/form/textarea')
-                    # //*[@id="react-root"]/section/main/div/div[1]/article/div[3]/section[3]/div/form/textarea
-                    # //*[@id="react-root"]/section/main/div/div[1]/article/div[3]/section[3]/div[1]/form/textarea
-                    # #react-root > section > main > div > div.ltEKP > article > div.eo2As > section.sH9wk._JgwE > div > form > textarea
-
 
                     if comm_prob == 1:
                         comment_box.send_keys('Great work!')

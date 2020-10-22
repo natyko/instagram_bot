@@ -1,2 +1,6 @@
 # instagram_bot
-Browse through hashtags, follows, likes, leaves comments
+
+- Browse through hashtags
+- follows new users
+- likes pictures
+- leaves comments
