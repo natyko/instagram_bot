@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 import os
 
 '''assign chrome driver path'''
-chromedriver_path = '/Users/nataliakozitcyna/Downloads/coding/drivers/chromedriver'  # Change this to your own chromedriver path!
+chromedriver_path = os.getenv("PATH", default="OOPS")  # Change this to your own chromedriver path!
 webdriver = webdriver.Chrome(executable_path=chromedriver_path)
 sleep(2)  # make sleep time for program to act like a "human"
 

@@ -1,4 +1,4 @@
-# instagram_bot
+# Instagram_bot
 
 - Browse through hashtags
 - follows new users
